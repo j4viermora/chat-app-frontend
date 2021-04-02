@@ -26,7 +26,14 @@ export const SocketProvider = ({ children }) => {
 
     },[ auth , disconnectSocket ] )
 
+    //Escuchar los cambios en los usuarios conectados
 
+    useEffect( function(){
+
+        socket?.on( 'lista-usuario', ( users ) => {
+            console.log(users)
+        });
+    }, [ socket ] );
 
     return (
         <SocketContext.Provider value={{ socket, online }}>
