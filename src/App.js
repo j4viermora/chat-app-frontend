@@ -1,11 +1,13 @@
 import { AppRouter } from "./routers/AppRouter";
-import './css/bootstrap.min.css';
+import { AuthProvider } from "./auth/AuthContext"
+
+import './css/bootstrap.css'
 
 function App() {
   return (
-    <>
+    <AuthProvider>
           <AppRouter />
-    </>
+    </AuthProvider>
   );
 }
 
