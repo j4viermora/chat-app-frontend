@@ -15,8 +15,6 @@ export const AppRouter = () => {
 
     const { auth , verificarToken } = useContext( AuthContext );
 
-    console.log(auth)
-
     useEffect( function(){
         verificarToken();
     }, [ verificarToken ] )

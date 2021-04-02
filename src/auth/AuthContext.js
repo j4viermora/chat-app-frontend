@@ -79,7 +79,6 @@ export const AuthProvider = ( { children } ) => {
 
         const resp = await fetchToken( 'login/renew' );
 
-        console.log(resp)
 
         if( resp.status ){
            

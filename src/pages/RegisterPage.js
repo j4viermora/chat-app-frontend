@@ -13,7 +13,6 @@ export const RegisterPage = () => {
 	const handleRegister = async ( { name , email, password } ) => {
 
 		turn( true )
-		console.log( name, email, password);
 		const resp = await register( name, email, password );
 	
 		if( !resp ){
