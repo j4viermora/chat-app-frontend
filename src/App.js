@@ -8,13 +8,13 @@ import { ChatProvider } from "./context/chat/ChatContext";
 function App() {
   return (
 
-    <AuthProvider>
-        <SocketProvider>
           <ChatProvider>
-            <AppRouter />
+            <AuthProvider>
+                <SocketProvider>
+                    <AppRouter />
+                </SocketProvider>
+              </AuthProvider>
           </ChatProvider>
-        </SocketProvider>
-      </AuthProvider>
   );
 }
 
