@@ -15,7 +15,7 @@ export const ChatPage = () => {
                 <div className="inbox_msg">
                 <InboxPeople/>
                {
-                ( chatState.activo )
+                ( chatState.chatActivo )
                 ? <Messages />
                 : <ChatSelect/>
                }

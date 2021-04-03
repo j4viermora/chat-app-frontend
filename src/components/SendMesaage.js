@@ -1,18 +1,43 @@
-import React from "react";
+import { Form, Formik, Field } from "formik";
 
 export const SendMesaage = () => {
+  
+
+ 
   return (
-    <form>
-        <div className="type_msg row">
-        <div className="input_msg_write col-sm-9">
-            <input type="text" className="write_msg" placeholder="Mensaje..." />
-        </div>
-        <div className="col-sm-3 text-center">
-            <button className="msg_send_btn mt-3" type="submit">
-            enviar
-            </button>
-        </div>
-        </div>
-    </form>
+    <Formik
+      initialValues={{
+        contentMessage: "",
+      }}
+      onSubmit={ (value, { resetForm } )=> {
+        console.log(value);
+        resetForm();
+      }}
+    >
+      {(formProps) => {
+        return (
+          <Form>
+            <div className="type_msg row">
+              <div className="input_msg_write col-sm-9">
+                <Field
+                  type="text"
+                  className="write_msg"
+                  placeholder="Mensaje..."
+                  name="contentMessage"
+                  autoComplete="off"
+                />
+              </div>
+              <div className="col-sm-3 text-center">
+                <button 
+                className="msg_send_btn mt-3" 
+                type="submit">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };

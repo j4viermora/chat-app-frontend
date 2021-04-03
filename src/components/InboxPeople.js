@@ -7,7 +7,6 @@ export const InboxPeople = () => {
 
       <div className="inbox_people">
         <SearchBox/>
-        
         <Sidebar />
       </div>
     

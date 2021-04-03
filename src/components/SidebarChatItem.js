@@ -4,7 +4,7 @@ import { types } from "../types/types";
 
 export const SidebarChatItem = ({ name, online, uid }) => {
 
-  const { dispatch } = useContext( ChatContext )
+  const { chatState ,dispatch } = useContext( ChatContext )
 
   const chatActive = () => {
 
@@ -18,7 +18,7 @@ export const SidebarChatItem = ({ name, online, uid }) => {
   return (
       <div 
       onClick={ chatActive }
-      className="chat_list active_chat">
+      className={ `chat_list ${( chatState.chatActivo === uid ) && 'active_chat' }`}>
         <div className="chat_people">
           <div className="chat_img">
             <img
