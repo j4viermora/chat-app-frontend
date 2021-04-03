@@ -1,21 +1,37 @@
-import { Form, Formik, Field } from "formik";
+import { useContext }           from "react"
+import { Form, Formik, Field }  from "formik";
+
+import { validacionesMensajes } from "../constants/validacionesMensajes";
+import { AuthContext }          from "../auth/AuthContext";
+import { ChatContext }          from "../context/chat/ChatContext";
+import { SocketContext }        from "../context/SocketContext";
 
 export const SendMesaage = () => {
-  
 
+const { socket }    = useContext( SocketContext );
+const { auth }      = useContext( AuthContext );
+const { chatState } = useContext( ChatContext );
+
+const enviarMensajes = ( { mensaje }) => {
+    console.log('enviando mensaj es...', mensaje )
+    socket.emit('mensaje-personal',{
+      from: auth.uid ,
+      to  : chatState.chatActivo ,
+      message: mensaje,
+    });
+};
  
   return (
     <Formik
       initialValues={{
-        contentMessage: "",
+        mensaje: "",
       }}
-      onSubmit={ (value, { resetForm } )=> {
-        console.log(value);
+      validate={ validacionesMensajes }
+      onSubmit={ (values, { resetForm } )=> {
+        enviarMensajes( values )
         resetForm();
-      }}
+      }}    
     >
-      {(formProps) => {
-        return (
           <Form>
             <div className="type_msg row">
               <div className="input_msg_write col-sm-9">
@@ -23,7 +39,7 @@ export const SendMesaage = () => {
                   type="text"
                   className="write_msg"
                   placeholder="Mensaje..."
-                  name="contentMessage"
+                  name="mensaje"
                   autoComplete="off"
                 />
               </div>
@@ -35,9 +51,7 @@ export const SendMesaage = () => {
                 </button>
               </div>
             </div>
-          </Form>
-        );
-      }}
+          </Form>  
     </Formik>
   );
 };

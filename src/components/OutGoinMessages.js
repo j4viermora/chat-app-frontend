@@ -1,11 +1,15 @@
 import React from 'react'
+import { hourMonth } from '../helpers/hourMonth'
 
-export const OutGoinMessages = () => {
-    return (
+export const OutGoinMessages = ({ msg }) => {
+  
+  const fecha = hourMonth( msg.createdAt );
+
+  return (
           <div className="outgoing_msg">
             <div className="sent_msg">
-              <p>Test which is a new approach to have all solutions</p>
-              <span className="time_date"> 11:01 AM | June 9</span>
+              <p>{ msg.message }</p>
+              <span className="time_date">{ fecha }</span>
             </div>
           </div>
     )

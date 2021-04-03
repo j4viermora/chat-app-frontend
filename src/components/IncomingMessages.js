@@ -1,7 +1,11 @@
 import React from 'react'
+import { hourMonth } from '../helpers/hourMonth'
 
-export const IncomingMessages = () => {
-    return (
+export const IncomingMessages = ({ msg }) => {
+  
+  const fecha = hourMonth( msg.createdAt );
+
+  return (
           <div className="incoming_msg">
             <div className="incoming_msg_img">
               <img
@@ -11,8 +15,8 @@ export const IncomingMessages = () => {
             </div>
             <div className="received_msg">
               <div className="received_withd_msg">
-                <p>Test which is a new approach to have all solutions</p>
-                <span className="time_date"> 11:01 AM | June 9</span>
+                <p>{ msg.message }</p>
+                <span className="time_date">{ fecha }</span>
               </div>
             </div>
           </div>

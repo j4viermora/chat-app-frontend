@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 const initialState = {
 
         uid: null,
-        cheacking: true,
+        cheacking: true ,
         logged : false,
         name: null,
         email: null
@@ -76,16 +76,12 @@ export const AuthProvider = ( { children } ) => {
 
             return false;
         }
-
         const resp = await fetchToken( 'login/renew' );
-
 
         if( resp.status ){
            
-            localStorage.setItem( 'token', resp.token );
-            
+            localStorage.setItem( 'token', resp.token );      
             const { email, name, uid } = resp.usuario;
-
             setAuth({
                 uid : uid,
                 cheacking: false,
@@ -96,14 +92,11 @@ export const AuthProvider = ( { children } ) => {
             return true;
         }else{
             setAuth({
-                cheacking: true ,
+                cheacking: false ,
                 logged: false,
             });
-
             return false;
         }
-
-
     }, [] );
 
     const logout = () => {

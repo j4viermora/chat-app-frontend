@@ -5,7 +5,6 @@ import { ChatContext } from './chat/ChatContext';
 import { useSocket } from '../hooks/useSocket'
 
 import { types } from '../types/types';
-
 export const SocketContext = createContext();
 
 
@@ -44,6 +43,20 @@ export const SocketProvider = ({ children }) => {
            } )
         });
     }, [ socket, dispatch ] );
+
+
+    // Escuchar los nuevos mensajes personales
+
+    useEffect(function(){
+        socket?.on( 'mensaje-personal', ( mensaje ) => {
+            dispatch( {
+                type: types.cargarMensajes,
+                payload: mensaje
+            })
+        })
+    }, [ socket, dispatch ])
+
+
 
     return (
         <SocketContext.Provider value={{ socket, online }}>
