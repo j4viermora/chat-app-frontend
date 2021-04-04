@@ -5,6 +5,15 @@ export const chatReducer = ( state, action ) => {
 
     switch (action.type) {
         
+        case types.cerrarSesion:
+            return{
+                uid: null,
+                cheacking: true ,
+                logged : false,
+                name: null,
+                email: null
+            }
+
         case types.cargarUsuarios:
             return {
                 ...state,

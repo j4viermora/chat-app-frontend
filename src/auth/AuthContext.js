@@ -102,10 +102,11 @@ export const AuthProvider = ( { children } ) => {
     const logout = () => {
 
         localStorage.removeItem( 'token' )
-
         setAuth({
             logged: false
         });
+        
+
 
     };
   

@@ -5,6 +5,7 @@ import { ChatContext } from './chat/ChatContext';
 import { useSocket } from '../hooks/useSocket'
 
 import { types } from '../types/types';
+import { scrollAlFinal } from '../helpers/scrollAlFinal';
 export const SocketContext = createContext();
 
 
@@ -52,7 +53,10 @@ export const SocketProvider = ({ children }) => {
             dispatch( {
                 type: types.cargarMensajes,
                 payload: mensaje
-            })
+            });
+
+            scrollAlFinal( 'mensajes' );
+
         })
     }, [ socket, dispatch ])
 

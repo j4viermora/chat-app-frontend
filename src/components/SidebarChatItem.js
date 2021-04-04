@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ChatContext } from "../context/chat/ChatContext";
 import { fetchToken } from "../helpers/feth";
+import { scrollAlFinal } from "../helpers/scrollAlFinal";
 import { types } from "../types/types";
 
 export const SidebarChatItem = ({ name, online, uid }) => {
@@ -20,6 +21,9 @@ export const SidebarChatItem = ({ name, online, uid }) => {
         type: types.traerUltimosMsg,
         payload: resp.last30
     });
+
+    scrollAlFinal( 'mensajes' )
+
   };
   
   return (

@@ -16,7 +16,7 @@ export const Messages = () => {
     <div>
       <div className="mesgs">
 
-        <div className="msg_history">
+        <div id="mensajes" className="msg_history">
             {
               mensajes.map( mensaje => (   
                 ( mensaje.to === auth.uid )
