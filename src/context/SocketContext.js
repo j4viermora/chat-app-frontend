@@ -15,7 +15,7 @@ export const SocketProvider = ({ children }) => {
     const { dispatch } = useContext( ChatContext );
 
 
-    const { socket, online, connectSocket, disconnectSocket } = useSocket('http://localhost:8080');
+    const { socket, online, connectSocket, disconnectSocket } = useSocket(process.env.REACT_APP_SOCKET_URL);
     
     useEffect( function(){
 
@@ -31,17 +31,19 @@ export const SocketProvider = ({ children }) => {
             disconnectSocket();
         }
 
-    },[ auth , disconnectSocket ] )
+    },[ auth, disconnectSocket ] )
 
     // Escuchar los cambios en los usuarios conectados
 
     useEffect( function(){
 
         socket?.on( 'lista-usuario', ( users ) => {
-           dispatch( {
+           
+         dispatch( {
                type: types.cargarUsuarios,
                payload: users
            } )
+           
         });
     }, [ socket, dispatch ] );
 
@@ -57,8 +59,11 @@ export const SocketProvider = ({ children }) => {
 
             scrollAlFinal( 'mensajes' );
 
+            console.log({ msg: "mensajes", mensaje})
+
         })
     }, [ socket, dispatch ])
+    
 
 
 

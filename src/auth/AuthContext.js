@@ -7,8 +7,8 @@ export const AuthContext = createContext();
 const initialState = {
 
         uid: null,
-        cheacking: true ,
-        logged : false,
+        cheacking: false ,
+        logged : null,
         name: null,
         email: null
 
@@ -24,22 +24,33 @@ export const AuthProvider = ( { children } ) => {
 
     const login = async( email, password )  => {
 
-       const resp = await simpleFetch( 'login',{ email, password }, 'POST' )
-    
-       if( resp.status ){
-        localStorage.setItem( 'token', resp.token )
-
-        const { uid, name , email } = resp.usuarioDB;
-
-        setAuth({
-            uid: uid,
-            cheacking: false,
-            logged : true,
-            name: name,
-            email: email
-         })
-       }
-       return resp.status
+        const data ={
+           email,
+           password
+        }
+        
+        try {
+            const resp = await simpleFetch( 'login', data , 'POST' )
+                       
+             if( resp.status ){
+                 
+             localStorage.setItem( 'token', resp.token )
+             const { uid, name , email } = resp.usuarioDB;
+     
+             setAuth({
+                 uid: uid,
+                 cheacking: false,
+                 logged : true,
+                 name: name,
+                 email: email
+              })
+            }
+     
+            return resp.status
+            
+        } catch (err) {
+            console.log(err)
+        }
 
     };
 
@@ -101,12 +112,9 @@ export const AuthProvider = ( { children } ) => {
 
     const logout = () => {
 
-        localStorage.removeItem( 'token' )
         setAuth({
             logged: false
         });
-        
-
 
     };
   

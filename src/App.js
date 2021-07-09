@@ -12,13 +12,13 @@ moment.locale('es');
 function App() {
   return (
 
-          <ChatProvider>
-            <AuthProvider>
-                <SocketProvider>
-                    <AppRouter />
-                </SocketProvider>
-              </AuthProvider>
-          </ChatProvider>
+        <AuthProvider>
+            <ChatProvider>
+              <SocketProvider>
+                  <AppRouter />
+              </SocketProvider>
+            </ChatProvider>
+        </AuthProvider>
   );
 }
 

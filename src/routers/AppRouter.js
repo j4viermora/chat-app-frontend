@@ -13,7 +13,7 @@ import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
 
-    const { auth , verificarToken } = useContext( AuthContext );
+    const { auth,verificarToken } = useContext( AuthContext );
 
     useEffect( function(){
         verificarToken();

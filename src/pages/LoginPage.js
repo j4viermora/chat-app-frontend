@@ -14,9 +14,9 @@ export const LoginPage = () => {
 
   const handlerSubmit = async ( { email, password, rememberme } ) => {
 
-    setActive( true )
+    // setActive( true )
     const status = await login( email, password )
-    
+        
     if( !status ){
       Swal.fire( 'Error', 'Algo salió mal verifique usuario y contraseña', 'error' )
       setActive( false )
@@ -35,13 +35,13 @@ export const LoginPage = () => {
         (remembermeEmail)
         ?{
         email: remembermeEmail,
-        password: "",
+        password: "123456",
         rememberme: false,
         }
         :
         {
-        email: "",
-        password: "",
+        email: "test@test.com",
+        password: "123456",
         rememberme: false,
         }
     }

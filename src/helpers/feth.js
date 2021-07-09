@@ -2,7 +2,7 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 
 const simpleFetch = async( endpoint, data, method = 'GET' ) => {
-
+    
     const url = `${baseURL}/${endpoint}`;
 
     if( method === 'GET' ){

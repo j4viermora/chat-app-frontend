@@ -13,7 +13,9 @@ const { auth }      = useContext( AuthContext );
 const { chatState } = useContext( ChatContext );
 
 const enviarMensajes = ( { mensaje }) => {
+  
     console.log('enviando mensaj es...', mensaje )
+
     socket.emit('mensaje-personal',{
       from: auth.uid ,
       to  : chatState.chatActivo ,
