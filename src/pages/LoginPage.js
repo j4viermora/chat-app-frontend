@@ -12,12 +12,15 @@ export const LoginPage = () => {
   const { login } = useContext( AuthContext )
   const [ active, setActive ] = useState( false )
 
-  const handlerSubmit = async ( { emailRaw = "", password, rememberme } ) => {
+  const handlerSubmit = async ( { email, password, rememberme } ) => {
 
-    const email = emailRaw.toLocaleLowerCase();
+    const emailLowerCase = email.toLowerCase();
+
+    console.log(emailLowerCase)
 
     setActive( true )
-    const status = await login( email, password )
+
+    const status = await login( emailLowerCase, password )
         
     if( !status ){
       Swal.fire( 'Error', 'Algo salió mal verifique usuario y contraseña', 'error' )
