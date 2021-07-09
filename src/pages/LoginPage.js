@@ -12,7 +12,9 @@ export const LoginPage = () => {
   const { login } = useContext( AuthContext )
   const [ active, setActive ] = useState( false )
 
-  const handlerSubmit = async ( { email, password, rememberme } ) => {
+  const handlerSubmit = async ( { emailRaw = "", password, rememberme } ) => {
+
+    const email = emailRaw.toLocaleLowerCase();
 
     // setActive( true )
     const status = await login( email, password )
@@ -35,13 +37,13 @@ export const LoginPage = () => {
         (remembermeEmail)
         ?{
         email: remembermeEmail,
-        password: "123456",
+        password: "",
         rememberme: false,
         }
         :
         {
-        email: "test@test.com",
-        password: "123456",
+        email: "",
+        password: "",
         rememberme: false,
         }
     }
