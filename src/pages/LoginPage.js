@@ -16,7 +16,7 @@ export const LoginPage = () => {
 
     const email = emailRaw.toLocaleLowerCase();
 
-    // setActive( true )
+    setActive( true )
     const status = await login( email, password )
         
     if( !status ){
